@@ -1,4 +1,4 @@
-# Machine Learning - Neural network force-field training for Iron Surfaces
+# Machine Learning - Hyperparameter optimization
 
 In this project you will work with a dataset of water molecules interacting with an iron surface in a constant temperature molecular dynamics simulation.  You will be provided with a dataset of 842 images that can be used for training the model, and an additional 200 images for validating the performance.
 
@@ -6,7 +6,7 @@ Prior work in the group has achieved neural network force fields with an accurac
 
 the data is located in the `data` folder in the top level of this github repository named `iron_data.traj` and `iron_validation.traj`
 
-There are many options for software to train these neural networks. The two best packages I am aware of are [Simple\_NN](https://github.com/medford-group/SIMPLE-NN.git) and [Schnetpack](https://github.com/atomistic-machine-learning/schnetpack). These are both academic software packages, and as such are hard to use. However, an example directory for running each can be found in the `scripts` folder in this repository.
+There are many options for software to train these neural networks. Some commonly-used options are [Simple\_NN](https://github.com/medford-group/SIMPLE-NN.git) and [Schnetpack](https://github.com/atomistic-machine-learning/schnetpack). These are both academic software packages, and as such are hard to use. However, an example directory for running each can be found in the `scripts` folder in this repository. Our group is also working to develop a new PyTorch-based version of the AMP software package. An alpha version is available [via Github](https://github.com/ulissigroup/amptorch). You may wish to try this as well.
 
 A paper by Behler explaining how this style of neural network force field works is below in the "Relevant Literature" section
 
@@ -29,3 +29,4 @@ A zip file with all model details as described in the midterm deliverable, along
 ## Relevant Literature
 https://onlinelibrary.wiley.com/doi/full/10.1002/qua.24890 https://www.sciencedirect.com/science/article/pii/S0010465519301298
 
+https://www.sciencedirect.com/science/article/pii/S0927025617307206

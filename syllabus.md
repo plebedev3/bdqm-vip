@@ -2,13 +2,13 @@ Instructor: A. J. Medford
 
 Email: [ajm@gatech.edu](mailto:ajm@gatech.edu)
 
-Office Hours: By Appointment
+Office Hours: [By Appointment](https://app.acuityscheduling.com/schedule.php?owner=18040156&appointmentType=11047919)
 
 Class Hours: W 10:10-11:00am
 
 Office Hours Location: ES&T L1222
 
-Class Room: ES&T L1118
+Class Room: MoSE 1201A
 
 Course Description
 ==================
@@ -128,11 +128,11 @@ Course Structure
 
 The grade will be assigned based on three categories:
 
--   Documentation: 33.$\bar{3}$%
+-   Documentation: 33.3 %
 
--   Personal Accomplishments: 33.$\bar{3}$ %
+-   Personal Accomplishments: 33.4 %
 
--   Teamwork and Interactions: 33.$\bar{3}$ %
+-   Teamwork and Interactions: 33.3 %
 
 A grade of 0-5 will be assigned for each category based on the criteria
 outlined below. A total grade will be computed based on the weighted
@@ -271,7 +271,6 @@ Schedule
 
 Week 1: Introduction to VIP and projects (Medford)
 
-
 Week 2: Overview of literature searches (Medford)
 
 Week 3: Intro to Python (Lei)
@@ -282,23 +281,22 @@ Week 5: PACE and Bash scripting (Lei)
 
 Week 6: Density functional theory calculations (Comer)
 
-Week 7: Updates and workshop
+Week 7: Workshop
 
-Week 8: Updates and workshop
+Week 8: Midterm Updates: Training Groups
 
-Week 9: Updates and workshop
+Week 9: Midterm Updates: Machine Learning Groups
 
 Week 10: Atomistic machine learning: theory (Lei)
 
 Week 11: Atomistic machine learning: application (Comer)
 
-Week 12: Updates and workshop
+Week 12: Workshop
 
-Week 13: Updates and workshop
+Week 13: Final Updates: Traning Groups
 
-Week 14: Updates and workshop
+Week 14: Final Updates: Machine Learning Groups
 
-Thanksgiving Break
 
 Changes to Syllabus
 ===================
