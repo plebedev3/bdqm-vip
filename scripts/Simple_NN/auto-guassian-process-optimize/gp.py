@@ -51,6 +51,6 @@ def fitness(learning_rate, layer_1, layer_2, layer_3, layer_4, layer_5, layer_6,
             activation, batch_size):
     yaml = create_yaml_file(learning_rate, layer_1, layer_2, layer_3, layer_4, layer_5, layer_6, layer_7,activation,batch_size)
     val_returned = submit_simple_nn_job_and_wait_sync(yaml)
-    return -val_returned*100
+    return val_returned*100
 
 create_guassian_process()

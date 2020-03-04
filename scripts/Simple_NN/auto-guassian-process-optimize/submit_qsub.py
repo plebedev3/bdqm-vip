@@ -37,7 +37,7 @@ def submit_simple_nn_job_and_wait_sync(yaml, name="job", logfile="output.$JOB_ID
     logfile_name = "output-{}.log".format(id_num)
     open("/nv/pace-ice/plebedev3/GPjobs/" + base + '.qsub', 'w').write(TEMPLATE_SERIAL.format(yaml_name,logfile_name))
     job_done = False
-    min_force =-10000
+    min_force =10000
     try:
         output = str(subprocess.check_output('qsub ' + "/nv/pace-ice/plebedev3/GPjobs/"+ base + '.qsub', shell=True))
         jobid = output.split(".")[0]
@@ -70,7 +70,7 @@ def submit_simple_nn_job_and_wait_sync(yaml, name="job", logfile="output.$JOB_ID
         except IOError:
             print("Results did not finish or job did not get submitted sucessfully")
             print("Giving min score possible")
-            return(-10000)
+            return(10000)
         return min_force
 
 def parse_results(results):
@@ -88,5 +88,5 @@ def parse_results(results):
                 min_force = float_val
     if(min_force == 10000):
         print("it probably shouldn't do this")
-        return -1*min_force
+        return min_force
     return min_force
