@@ -18,12 +18,12 @@ def train_networks(networks, dataset):
     yamls = []
     for network in networks:
         yamls.append(network.get_yaml())
-        network.train(dataset)
-        pbar.update(1)
-    pbar.close()
+    results = submit_n_simple_nn_job_and_wait_sync(yamls))
+    for res in results:
+        network.min_force = res
 
 def get_average_accuracy(networks):
-    """Get the average accuracy for a group of networks.
+    """Get the average accuracy for a group of networks.ls
     Args:
         networks (list): List of networks
     Returns:
