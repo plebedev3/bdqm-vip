@@ -8,7 +8,7 @@
 
 # 1. Setup Conda Environment for Simple-NN
 
-**ssh in to Pace-ice: **
+**ssh in to Pace-ice:**
 
 ```
 ssh -x <GTID>@pace-ice.pace.gatech.edu
@@ -41,6 +41,6 @@ conda activate tf32
 
 # 2. Testing Enviroment with Interactive Environment
 
-'''
+```
 qsub -l walltime=00:30:00 -l nodes=1:ppn=1:gpus=1 -q pace-ice-gpu -I 
-'''
+```
