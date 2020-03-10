@@ -34,16 +34,17 @@ def submit_simple_nn_job_and_wait_sync(yaml, name="job", logfile="output.$JOB_ID
     base = prefix + "submit_{0}".format(id_num)
     yaml_name = base + ".yaml"
     open("/nv/pace-ice/plebedev3/GPjobs/" + yaml_name, 'w').write(yaml)
-    logfile_name = "output-{}.log".format(id_num)
-    open("/nv/pace-ice/plebedev3/GPjobs/" + base + '.qsub', 'w').write(TEMPLATE_SERIAL.format(yaml_name,logfile_name))
+    log_file_name = "output-{}.log".format(id_num)
+    open("/nv/pace-ice/plebedev3/GPjobs/" + base + '.qsub', 'w').write(TEMPLATE_SERIAL.format(yaml_name,log_file_name))
     job_done = False
     min_force =10000
     try:
         output = str(subprocess.check_output('qsub ' + "/nv/pace-ice/plebedev3/GPjobs/"+ base + '.qsub', shell=True))
-        jobid = output.split(".")[0]
-        jobid = jobid[2:len(jobid)]
+        job_id = output.split(".")[0]
+        job_id = job_id[2:len(job_id)]
         time.sleep(5)
     finally:
+        print(job_id)
         if cleanup:
             os.remove(base + '.qsub')
         while(not job_done):
@@ -51,7 +52,7 @@ def submit_simple_nn_job_and_wait_sync(yaml, name="job", logfile="output.$JOB_ID
                 results = str(subprocess.check_output("qstat", shell=True)).split("\n")
                 correctline = ""
                 for line in results:
-                    if (jobid in line):
+                    if (job_id in line):
                         correctline = line
                         break
                 if(correctline == ""):
@@ -64,7 +65,7 @@ def submit_simple_nn_job_and_wait_sync(yaml, name="job", logfile="output.$JOB_ID
             except subprocess.CalledProcessError:
                 time.sleep(5)
         try:
-            results = open("/nv/pace-ice/plebedev3/GPjobs/outputs/" + logfile_name, "r")
+            results = open("/nv/pace-ice/plebedev3/GPjobs/outputs/" + log_file_name, "r")
             print("job done!")
             min_force = parse_results(results.read())
         except IOError:
@@ -72,6 +73,67 @@ def submit_simple_nn_job_and_wait_sync(yaml, name="job", logfile="output.$JOB_ID
             print("Giving min score possible")
             return(10000)
         return min_force
+
+def submit_n_simple_nn_job_and_wait_sync(yamls, name="job", logfile="output.$JOB_ID", errfile="error.$JOB_ID", cleanup=False, prefix="input-", slots=1):
+    all_jobs_done = [False for i in range(len(yamls))]
+    job_ids = []
+    min_forces = []
+    log_file_names = []
+    for yaml in yamls:
+        id_num = random_id()
+        base = prefix + "submit_{0}".format(id_num)
+        yaml_name = base + ".yaml"
+        open("/nv/pace-ice/plebedev3/GPjobs/" + yaml_name, 'w').write(yaml)
+        log_file_name = "output-{}.log".format(id_num)
+        log_file_names.append(log_file_name)
+        open("/nv/pace-ice/plebedev3/GPjobs/" + base + '.qsub', 'w').write(TEMPLATE_SERIAL.format(yaml_name,log_file_name))
+        job_done = False
+        min_force = 10000
+        try:
+            output = str(subprocess.check_output('qsub ' + "/nv/pace-ice/plebedev3/GPjobs/"+ base + '.qsub', shell=True))
+            job_id = output.split(".")[0]
+            job_id = job_id[2:len(job_id)]
+            time.sleep(5)
+        finally:
+            print(job_id)
+            job_ids.append(job_id)
+        if cleanup:
+            os.remove(base + '.qsub')
+    while(not all(all_jobs_done)):
+        for index, job_done in enumerate(all_jobs_done):
+            if(not job_done):
+                job_id = job_ids[index]
+                log_file_name = log_file_names[index]
+                try:
+                    results = str(subprocess.check_output("qstat", shell=True)).split("\n")
+                    correctline = ""
+                    for line in results:
+                        if (job_id in line):
+                            correctline = line
+                            break
+                    if(correctline == ""):
+                        print("Job was not found")
+                        print("Assuming job was not picked up on")
+                        print("And finished sucessfully")
+                        job_done = True
+                    jobIndexStatus = correctline.find("pace-ice-gpu")-2
+                    if(jobIndexStatus>0):
+                        if(correctline[jobIndexStatus] == "C"):
+                            job_done = True
+                    time.sleep(5)
+                except subprocess.CalledProcessError:
+                    time.sleep(5)
+    for log_file_name in log_file_names:
+        try:
+            results = open("/nv/pace-ice/plebedev3/GPjobs/outputs/" + log_file_name, "r")
+            print("job done!")
+            min_force = parse_results(results.read())
+            min_forces.append(min_force)
+        except IOError:
+            print("Results did not finish or job did not get submitted sucessfully")
+            print("Giving min score possible")
+            min_forces.append(10000)
+    return min_forces
 
 def parse_results(results):
     force_string = "F RMSE(T V) = "
