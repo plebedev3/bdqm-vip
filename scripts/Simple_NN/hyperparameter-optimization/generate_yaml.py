@@ -44,7 +44,7 @@ neural_network:
   full_batch: false
   activation_function: {}
   batch_size: {}
-  total_epoch: 10000
+  total_epoch: 15000
   learning_rate: {}
 """
 
