@@ -16,11 +16,23 @@ ssh -x <GTID>@pace-ice.pace.gatech.edu
 
 **create conda env:**
 
+-add git module:
+
+```
+module load git
+```
+
 - clone repo:
 **WARNING: URL should be changed after folked repo has been pushed to master.**
 
 ```
 https://github.com/plebedev3/bdqm-vip.git
+```
+
+- add conda module:
+
+```
+module load anaconda3/2019.03
 ```
 
 - create conda environment with a.yml
