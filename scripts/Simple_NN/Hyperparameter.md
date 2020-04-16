@@ -46,6 +46,8 @@ cd ./bdqm-vip/scripts/Simple_NN
 conda env create -f a.yml
 ```
 
+- If you get a disk usage error, do `conda clean --all` and then repeat the above command
+
 - test if conda environment exists using:
 
 ```
