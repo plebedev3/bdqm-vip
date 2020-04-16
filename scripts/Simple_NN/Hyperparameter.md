@@ -86,7 +86,7 @@ python setup.py install
 qsub -l walltime=00:30:00 -l nodes=1:ppn=1:gpus=1 -q pace-ice-gpu -I 
 ```
 
-**Something a little more complex:**
+**Creating a qsub that produces an output:**
 - Navigate to home directory
 ```
 cd ~
