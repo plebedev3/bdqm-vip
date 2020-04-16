@@ -120,7 +120,9 @@ qsub example.sh
 
 # 3. Testing Enviroment with Interactive Environment
 
+- Interactive environments are great for debugging.
 - You can use an interactive environment to run your code line-by-line and see the progress as time goes on.
+- That way, if something goes wrong, you can see exactly where the problem happened.
 
 **Start job in interactive environment**
 - Navigate to directory:
