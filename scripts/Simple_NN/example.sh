@@ -9,9 +9,11 @@
 
 cd /scratch/
 module load git
+mkdir {gtusername}
+cd /scratch/{gtusername}
 rm -rf bdqm-vip/
 git clone https://github.com/medford-group/bdqm-vip.git
-cd /scratch/bdqm-vip/scripts/Simple_NN/
+cd /scratch/{gtusername}/bdqm-vip/scripts/Simple_NN/
 module load anaconda3/2019.03
 conda activate tf32
 python run.py
