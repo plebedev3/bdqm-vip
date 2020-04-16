@@ -80,7 +80,7 @@ cd SIMPLE-NN
 python setup.py install
 ```
 
-# 2. Testing Enviroment with Interactive Environment
+# 2. Testing Enviroment
 
 ```
 qsub -l walltime=00:30:00 -l nodes=1:ppn=1:gpus=1 -q pace-ice-gpu -I 
@@ -116,5 +116,28 @@ nano example.sh
 qsub example.sh
 ```
 
-- You can now do `qstate -u [username]` to view your scheduled job, and the output log will be located in `~/scripts/outputs` as `output-default.log`
+- You can now do `qstat -u [username]` to view your scheduled job, and the output log will be located in `~/scripts/outputs` as `output-default.log`
+
+# 3. Testing Enviroment with Interactive Environment
+
+- You can use an interactive environment to run your code line-by-line and see the progress as time goes on.
+
+**Start job in interactive environment**
+- Navigate to directory:
+```
+cd ~/jobs
+```
+
+- If you don't have `example.sh`, check step 2 to see how to get it
+
+- Run job in interactive environment:
+
+```
+qsub -I example.sh
+```
+
+- Now you can run each line in `example.sh` one at a time
+
+- Once you run the line `python run.py`, you should see a progress bar.
+- When that is complete, run the last line in `example.sh` to copy the log file, and then type `exit` to leave the interactive environment
 
