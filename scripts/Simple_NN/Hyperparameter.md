@@ -85,3 +85,36 @@ python setup.py install
 ```
 qsub -l walltime=00:30:00 -l nodes=1:ppn=1:gpus=1 -q pace-ice-gpu -I 
 ```
+
+**Something a little more complex:**
+- Navigate to home directory
+```
+cd ~
+```
+
+- Create directory for qsub jobs, and navigate into it
+```
+mkdir jobs
+cd jobs
+```
+
+- Create directory for output logs
+```
+mkdir outputs
+```
+
+- Create qsub job
+```
+touch example.sh
+cp ~/bdqm-vip/scripts/Simple_NN/example.sh example.sh
+nano example.sh
+```
+- Then, swap `{gtusername}` with your username everywhere in the file
+
+- Schedule the job:
+```
+qsub example.sh
+```
+
+- You can now do `qstate -u [username]` to view your scheduled job, and the output log will be located in `~/scripts/outputs` as `output-default.log`
+
