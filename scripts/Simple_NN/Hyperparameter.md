@@ -14,9 +14,9 @@
 ssh -x <GTID>@pace-ice.pace.gatech.edu
 ```
 
-**create conda env:**
+**Create conda env:**
 
--add git module:
+- add git module:
 
 ```
 module load git
@@ -26,30 +26,59 @@ module load git
 **WARNING: URL should be changed after folked repo has been pushed to master.**
 
 ```
-https://github.com/plebedev3/bdqm-vip.git
+git clone https://github.com/plebedev3/bdqm-vip.git
 ```
 
-- add conda module:
+- add conda module (You'll have to do this everytime you ssh into pace-ice and want to activate the conda env):
 
 ```
 module load anaconda3/2019.03
 ```
 
-- create conda environment with a.yml
+- navigate to directory with a.yml
+
 ```
 cd ./bdqm-vip/scripts/Simple_NN
 ```
+
+- create conda environment with a.yml
 ```
 conda env create -f a.yml
 ```
 
-- test if conda environment is exist using:
+- test if conda environment exists using:
 
 ```
 conda activate tf32
 ```
 
-- if (tf32) appears in front of your user id, it is successfully built.
+- If (tf32) appears in front of your user id, it is successfully built.
+
+**Set up conda environment**
+
+- Navigate to your home directory
+
+```
+cd ~
+```
+
+- clone repo:
+
+```
+git clone https://github.com/medford-group/SIMPLE-NN.git
+```
+
+- Navigate to directory with setup.py
+
+```
+cd SIMPLE-NN
+```
+
+- Install setup:
+
+```
+python setup.py install
+```
 
 # 2. Testing Enviroment with Interactive Environment
 
