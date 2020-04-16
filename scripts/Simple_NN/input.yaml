@@ -18,5 +18,5 @@ neural_network:
   full_batch: false
   activation_function: tanh
   batch_size: 100
-  total_epoch: 200000
+  total_epoch: 30000
   learning_rate: 0.01
